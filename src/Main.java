@@ -11,8 +11,12 @@ public class Main {
         String[] products = {"Хлеб", "Яблоки", "Молоко"};
         int[] prices = {100, 200, 300};
         File file = new File("objBasket.txt");
-        Basket basket = Basket.loadFromTxtFile(file);
-        // Basket basket = new Basket(products,prices);
+        File fileBin = new File("basket.bin");
+        // Basket basket = Basket.loadFromTxtFile(file);
+          Basket basket = new Basket(products,prices);
+       //  Basket basket = Basket.loadFromBinFile(fileBin);
+
+
         for (int i = 0; i < products.length; i++) {
             System.out.println((i + 1) + ". " + products[i] + " " + prices[i] + " руб/шт.");
         }
