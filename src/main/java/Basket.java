@@ -1,5 +1,8 @@
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Basket {
 
@@ -65,8 +68,22 @@ public class Basket {
         }
 
     }
-
-    static Basket loadFromTxtFile(File textFile) throws IOException {
+    public void saveJson(File textFile) throws IOException {
+        try (PrintWriter out = new PrintWriter(textFile);) {
+            Gson gson = new Gson();
+            String jsonTxt = gson.toJson(this);
+            out.println(jsonTxt);
+        }
+    }
+    static Basket loadFromJsonFile(File textFile) throws IOException {
+        try (Scanner scanner = new Scanner(textFile)) {
+            Gson gson = new Gson();
+            String json = scanner.nextLine();
+            Basket basket = gson.fromJson(json, Basket.class);
+            return basket;
+        }
+    }
+    static Basket loadFromTxtFile (File textFile) throws IOException {
         String[] loadProducts = new String[0];
 
         int[] loadPrices = new int[0];

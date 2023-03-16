@@ -44,20 +44,6 @@ public class ClientLog {
         }
     }
 
-    public void saveJson(File textFile) throws IOException {
-        try (PrintWriter out = new PrintWriter(textFile);) {
-            Gson gson = new Gson();
-            String jsonTxt = gson.toJson(this);
-            out.println(jsonTxt);
-        }
-    }
 
-    static ClientLog loadFromJsonFile(File textFile) throws IOException {
-        try (Scanner scanner = new Scanner(textFile)) {
-            Gson gson = new Gson();
-            String json = scanner.nextLine();
-            ClientLog basket = gson.fromJson(json, ClientLog.class);
-            return basket;
-        }
-    }
+
 }
